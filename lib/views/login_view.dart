@@ -1,3 +1,4 @@
+import 'package:auth_mobile_app/widgets/login_body.dart';
 import 'package:flutter/material.dart';
 
 class LoginView extends StatelessWidget {
@@ -6,9 +7,7 @@ class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Column(),
-      ),
+      body: LoginBody(),
     );
   }
 }

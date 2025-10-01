@@ -1,3 +1,4 @@
+import 'package:auth_mobile_app/constants.dart';
 import 'package:flutter/material.dart';
 
 class UserProfilePic extends StatelessWidget {
@@ -13,14 +14,15 @@ class UserProfilePic extends StatelessWidget {
           height: 200,
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('assets/images/pattern.png'),
+              image: AssetImage(patternPic),
               fit: BoxFit.fitWidth,
             ),
           ),
         ),
         Positioned(
-            bottom: -60,
-            child: Image.asset('assets/images/default_profile_image.png')),
+          bottom: -60,
+          child: Image.asset(defaultUserProfilePic),
+        ),
       ],
     );
   }

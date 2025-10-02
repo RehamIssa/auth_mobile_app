@@ -1,5 +1,5 @@
 import 'package:auth_mobile_app/constants.dart';
-import 'package:auth_mobile_app/views/register_view.dart';
+import 'package:auth_mobile_app/views/login_view.dart';
 import 'package:auth_mobile_app/widgets/custom_button.dart';
 import 'package:auth_mobile_app/widgets/custom_checkbox.dart';
 import 'package:auth_mobile_app/widgets/custom_underlined_text.dart';
@@ -7,8 +7,8 @@ import 'package:auth_mobile_app/widgets/input_form.dart';
 import 'package:auth_mobile_app/widgets/user_profile_pic.dart';
 import 'package:flutter/material.dart';
 
-class LoginBody extends StatelessWidget {
-  const LoginBody({super.key});
+class RegisterBody extends StatelessWidget {
+  const RegisterBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,26 +16,26 @@ class LoginBody extends StatelessWidget {
       child: Column(
         children: [
           UserProfilePic(),
-          const SizedBox(
+          SizedBox(
             height: 80,
           ),
           Text(
-            'Log in to your account',
+            'Create new account',
             style: TextStyle(
               color: textColor,
               fontWeight: FontWeight.bold,
               fontSize: 20,
             ),
           ),
-          const SizedBox(
+          SizedBox(
             height: 22,
           ),
           InputForm(),
-          const SizedBox(
+          SizedBox(
             height: 22,
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0),
+            padding: EdgeInsets.symmetric(horizontal: 24.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -46,11 +46,11 @@ class LoginBody extends StatelessWidget {
                     CustomUnderlinedText(text: 'Forgot password?'),
                   ],
                 ),
-                const SizedBox(
+                SizedBox(
                   height: 22,
                 ),
                 CustomButton(),
-                const SizedBox(
+                SizedBox(
                   height: 22,
                 ),
                 Row(
@@ -63,14 +63,14 @@ class LoginBody extends StatelessWidget {
                         fontSize: 14,
                       ),
                     ),
-                    const SizedBox(
+                    SizedBox(
                       width: 6,
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, RegisterView.id);
+                        Navigator.pushNamed(context, LoginView.id);
                       },
-                      child: CustomUnderlinedText(text: 'Register'),
+                      child: CustomUnderlinedText(text: 'Login'),
                     ),
                   ],
                 ),

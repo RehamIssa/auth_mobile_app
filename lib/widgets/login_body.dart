@@ -49,7 +49,9 @@ class LoginBody extends StatelessWidget {
                 const SizedBox(
                   height: 22,
                 ),
-                CustomButton(),
+                CustomButton(
+                  label: 'Login',
+                ),
                 const SizedBox(
                   height: 22,
                 ),

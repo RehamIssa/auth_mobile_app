@@ -49,7 +49,9 @@ class RegisterBody extends StatelessWidget {
                 SizedBox(
                   height: 22,
                 ),
-                CustomButton(),
+                CustomButton(
+                  label: 'Register',
+                ),
                 SizedBox(
                   height: 22,
                 ),

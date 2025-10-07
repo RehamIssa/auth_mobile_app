@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({
-    super.key, required this.label,
+    super.key,
+    required this.label,
+    this.color = primaryColor,
   });
   final String label;
+  final Color color;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -13,7 +16,7 @@ class CustomButton extends StatelessWidget {
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(4),
-        color: primaryColor,
+        color: color,
       ),
       child: Center(
         child: Text(

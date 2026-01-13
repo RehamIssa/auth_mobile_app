@@ -1,15 +1,16 @@
+import 'package:auth_mobile_app/Core/utils/text_styles.dart';
 import 'package:auth_mobile_app/constants.dart';
-import 'package:auth_mobile_app/views/login_view.dart';
-import 'package:auth_mobile_app/widgets/custom_button.dart';
-import 'package:auth_mobile_app/widgets/custom_checkbox.dart';
-import 'package:auth_mobile_app/widgets/custom_input_field.dart';
-import 'package:auth_mobile_app/widgets/custom_underlined_text.dart';
-import 'package:auth_mobile_app/widgets/user_profile_pic.dart';
+import 'package:auth_mobile_app/Features/Auth_Feature/presentation/views/login_view.dart';
+import 'package:auth_mobile_app/Features/Auth_Feature/presentation/views/widgets/custom_button.dart';
+import 'package:auth_mobile_app/Features/Auth_Feature/presentation/views/widgets/custom_checkbox.dart';
+import 'package:auth_mobile_app/Features/Auth_Feature/presentation/views/widgets/custom_input_field.dart';
+import 'package:auth_mobile_app/Features/Auth_Feature/presentation/views/widgets/custom_underlined_text.dart';
+import 'package:auth_mobile_app/Features/Auth_Feature/presentation/views/widgets/user_profile_pic.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class RegisterBody extends StatelessWidget {
-  const RegisterBody({super.key});
+class RegisterViewBody extends StatelessWidget {
+  const RegisterViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,11 +23,7 @@ class RegisterBody extends StatelessWidget {
           ),
           Text(
             'Create new account',
-            style: TextStyle(
-              color: textColor,
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
-            ),
+            style: TextStyles.header3,
           ),
           const SizedBox(
             height: 22,
@@ -40,6 +37,7 @@ class RegisterBody extends StatelessWidget {
                   label: 'Username',
                   hint: 'Enter your username',
                   icon: FontAwesomeIcons.circleXmark,
+                  obscureText: false,
                 ),
                 const SizedBox(
                   height: 22,
@@ -48,6 +46,7 @@ class RegisterBody extends StatelessWidget {
                   label: 'Email',
                   hint: 'Enter your email',
                   icon: FontAwesomeIcons.circleXmark,
+                  obscureText: false,
                 ),
                 const SizedBox(
                   height: 22,
@@ -56,6 +55,7 @@ class RegisterBody extends StatelessWidget {
                   label: 'Password',
                   hint: 'Enter your password',
                   icon: FontAwesomeIcons.eyeSlash,
+                  obscureText: false,
                 ),
                 const SizedBox(
                   height: 22,

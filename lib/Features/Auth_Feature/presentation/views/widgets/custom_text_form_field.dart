@@ -1,3 +1,4 @@
+import 'package:auth_mobile_app/Core/utils/text_styles.dart';
 import 'package:auth_mobile_app/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -38,11 +39,9 @@ class CustomTextFormField extends StatelessWidget {
           ),
           borderRadius: BorderRadius.circular(8),
         ),
-        hintStyle: TextStyle(
-          color: hintsColor,
-          fontSize: 14,
-        ),
+        hintStyle: TextStyles.paragraphLight,
         hintText: hintText,
+        labelStyle: TextStyles.paragraphRegular,
       ),
     );
   }

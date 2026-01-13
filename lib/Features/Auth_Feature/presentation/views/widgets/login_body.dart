@@ -1,10 +1,11 @@
+import 'package:auth_mobile_app/Core/utils/text_styles.dart';
 import 'package:auth_mobile_app/constants.dart';
-import 'package:auth_mobile_app/views/register_view.dart';
-import 'package:auth_mobile_app/widgets/custom_button.dart';
-import 'package:auth_mobile_app/widgets/custom_checkbox.dart';
-import 'package:auth_mobile_app/widgets/custom_input_field.dart';
-import 'package:auth_mobile_app/widgets/custom_underlined_text.dart';
-import 'package:auth_mobile_app/widgets/user_profile_pic.dart';
+import 'package:auth_mobile_app/Features/Auth_Feature/presentation/views/register_view.dart';
+import 'package:auth_mobile_app/Features/Auth_Feature/presentation/views/widgets/custom_button.dart';
+import 'package:auth_mobile_app/Features/Auth_Feature/presentation/views/widgets/custom_checkbox.dart';
+import 'package:auth_mobile_app/Features/Auth_Feature/presentation/views/widgets/custom_input_field.dart';
+import 'package:auth_mobile_app/Features/Auth_Feature/presentation/views/widgets/custom_underlined_text.dart';
+import 'package:auth_mobile_app/Features/Auth_Feature/presentation/views/widgets/user_profile_pic.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -20,13 +21,9 @@ class LoginBody extends StatelessWidget {
           const SizedBox(
             height: 80,
           ),
-          Text(
+          const Text(
             'Log in to your account',
-            style: TextStyle(
-              color: textColor,
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
-            ),
+            style: TextStyles.header3,
           ),
           const SizedBox(
             height: 22,
@@ -37,6 +34,7 @@ class LoginBody extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CustomInputField(
+                  obscureText: false,
                   label: 'Username',
                   hint: 'Enter your username',
                   icon: FontAwesomeIcons.circleXmark,
@@ -45,6 +43,7 @@ class LoginBody extends StatelessWidget {
                   height: 22,
                 ),
                 CustomInputField(
+                  obscureText: false,
                   label: 'Password',
                   hint: 'Enter your password',
                   icon: FontAwesomeIcons.eyeSlash,

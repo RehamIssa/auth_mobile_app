@@ -1,4 +1,4 @@
-import 'package:auth_mobile_app/widgets/register_body.dart';
+import 'package:auth_mobile_app/Features/Auth_Feature/presentation/views/widgets/register_view_body.dart';
 import 'package:flutter/material.dart';
 
 class RegisterView extends StatelessWidget {
@@ -7,8 +7,7 @@ class RegisterView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: RegisterBody(),
+      body: RegisterViewBody(),
     );
   }
 }

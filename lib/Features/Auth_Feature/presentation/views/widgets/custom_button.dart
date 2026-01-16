@@ -1,13 +1,18 @@
 import 'package:auth_mobile_app/constants.dart';
 import 'package:flutter/material.dart';
+
 class CustomButton extends StatelessWidget {
   const CustomButton({
     super.key,
     required this.label,
     this.onPressed,
+    this.buttonColor,
+    this.pressedButtonColor,
   });
   final String label;
   final void Function()? onPressed;
+  final Color? buttonColor;
+  final Color? pressedButtonColor;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -26,9 +31,11 @@ class CustomButton extends StatelessWidget {
           backgroundColor: WidgetStateProperty.resolveWith<Color?>(
             (Set<WidgetState> states) {
               if (states.contains(WidgetState.pressed)) {
-                return primaryPressedColor;
+                return (pressedButtonColor == null)
+                    ? primaryPressedColor
+                    : pressedButtonColor;
               }
-              return primaryColor;
+              return (buttonColor == null) ? primaryColor : buttonColor;
             },
           ),
         ),

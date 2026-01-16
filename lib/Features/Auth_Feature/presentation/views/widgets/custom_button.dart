@@ -1,24 +1,37 @@
 import 'package:auth_mobile_app/constants.dart';
 import 'package:flutter/material.dart';
-
 class CustomButton extends StatelessWidget {
   const CustomButton({
     super.key,
     required this.label,
-    this.color = primaryColor,
+    this.onPressed,
   });
   final String label;
-  final Color color;
+  final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 44,
       width: double.infinity,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(4),
-        color: color,
-      ),
-      child: Center(
+      child: ElevatedButton(
+        onPressed: onPressed,
+        style: ButtonStyle(
+          elevation: WidgetStatePropertyAll<double>(0),
+          shape: WidgetStatePropertyAll<RoundedRectangleBorder>(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(4),
+            ),
+          ),
+          foregroundColor: WidgetStatePropertyAll<Color>(Colors.white),
+          backgroundColor: WidgetStateProperty.resolveWith<Color?>(
+            (Set<WidgetState> states) {
+              if (states.contains(WidgetState.pressed)) {
+                return primaryPressedColor;
+              }
+              return primaryColor;
+            },
+          ),
+        ),
         child: Text(
           label,
           style: TextStyle(

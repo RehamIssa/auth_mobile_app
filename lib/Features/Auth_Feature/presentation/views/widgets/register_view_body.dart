@@ -1,17 +1,22 @@
 import 'package:auth_mobile_app/Core/utils/text_styles.dart';
-import 'package:auth_mobile_app/constants.dart';
+import 'package:auth_mobile_app/Features/Auth_Feature/presentation/view_model/checkbox_toggle_cubit/checkbox_toggle_cubit.dart';
+import 'package:auth_mobile_app/Features/Auth_Feature/presentation/view_model/password_visibility_cubit/password_visibility_cubit.dart';
 import 'package:auth_mobile_app/Features/Auth_Feature/presentation/views/login_view.dart';
 import 'package:auth_mobile_app/Features/Auth_Feature/presentation/views/widgets/custom_button.dart';
 import 'package:auth_mobile_app/Features/Auth_Feature/presentation/views/widgets/custom_checkbox.dart';
-import 'package:auth_mobile_app/Features/Auth_Feature/presentation/views/widgets/custom_input_field.dart';
+import 'package:auth_mobile_app/Features/Auth_Feature/presentation/views/widgets/custom_text_form_field.dart';
+import 'package:auth_mobile_app/Features/Auth_Feature/presentation/views/widgets/custom_text_form_password_field.dart';
 import 'package:auth_mobile_app/Features/Auth_Feature/presentation/views/widgets/custom_underlined_text.dart';
 import 'package:auth_mobile_app/Features/Auth_Feature/presentation/views/widgets/user_profile_pic.dart';
+import 'package:auth_mobile_app/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 
 class RegisterViewBody extends StatelessWidget {
-  const RegisterViewBody({super.key});
-
+  RegisterViewBody({super.key});
+  final emailController = TextEditingController();
+  final usernameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -33,49 +38,41 @@ class RegisterViewBody extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CustomInputField(
+                CustomTextFormField(
+                  hintText: 'Enter your username',
                   label: 'Username',
-                  hint: 'Enter your username',
-                  icon: FontAwesomeIcons.circleXmark,
-                  obscureText: false,
+                  controller: usernameController,
                 ),
-                const SizedBox(
-                  height: 22,
-                ),
-                CustomInputField(
+                const Gap(22),
+                CustomTextFormField(
+                  hintText: 'Enter your email',
                   label: 'Email',
-                  hint: 'Enter your email',
-                  icon: FontAwesomeIcons.circleXmark,
-                  obscureText: false,
+                  controller: usernameController,
                 ),
-                const SizedBox(
-                  height: 22,
+                const Gap(22),
+                BlocProvider(
+                  create: (_) => PasswordVisibilityCubit(),
+                  child: CustomTextFormPasswordField(
+                    hintText: 'Enter your password',
+                    label: 'Password',
+                  ),
                 ),
-                CustomInputField(
-                  label: 'Password',
-                  hint: 'Enter your password',
-                  icon: FontAwesomeIcons.eyeSlash,
-                  obscureText: false,
-                ),
-                const SizedBox(
-                  height: 22,
-                ),
+                const Gap(22),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    CustomCheckbox(),
+                    BlocProvider(
+                      create: (context) => CheckboxToggleCubit(),
+                      child: CustomCheckbox(),
+                    ),
                     CustomUnderlinedText(text: 'Have a problem?'),
                   ],
                 ),
-                const SizedBox(
-                  height: 22,
-                ),
+                const Gap(22),
                 CustomButton(
                   label: 'Register',
                 ),
-                SizedBox(
-                  height: 22,
-                ),
+                const Gap(22),
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -86,9 +83,7 @@ class RegisterViewBody extends StatelessWidget {
                         fontSize: 14,
                       ),
                     ),
-                    SizedBox(
-                      width: 6,
-                    ),
+                    const Gap(6),
                     GestureDetector(
                       onTap: () {
                         Navigator.pushNamed(context, LoginView.id);

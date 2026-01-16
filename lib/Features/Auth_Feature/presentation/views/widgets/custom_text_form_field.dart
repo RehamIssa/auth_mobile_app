@@ -6,43 +6,67 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
     super.key,
-    this.obscureText = false,
     required this.hintText,
-    required this.icon,
+    required this.label,
+    required this.controller,
   });
-  final bool obscureText;
+
   final String hintText;
-  final FaIcon icon;
+  final String label;
+  final TextEditingController controller;
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      obscureText: obscureText,
-      cursorColor: primaryColor,
-      decoration: InputDecoration(
-        suffixIconConstraints: BoxConstraints(
-          minWidth: 0,
-          minHeight: 0,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          label,
+          style: TextStyles.paragraphLight,
         ),
-        suffixIcon: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: icon,
+        const SizedBox(
+          height: 8,
         ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-          borderSide: BorderSide(
-            color: primaryColor,
+        TextFormField(
+          controller: controller,
+          cursorColor: primaryColor,
+          decoration: InputDecoration(
+            suffixIconConstraints: BoxConstraints(
+              minWidth: 0,
+              minHeight: 0,
+            ),
+            suffixIcon: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: IconButton(
+                onPressed: () {
+                  if (controller.text.isNotEmpty) {
+                    controller.clear();
+                  }
+                },
+                icon: FaIcon(
+                  FontAwesomeIcons.circleXmark,
+                  color: hintsColor,
+                  size: 16,
+                ),
+              ),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+              borderSide: BorderSide(
+                color: primaryColor,
+              ),
+            ),
+            border: OutlineInputBorder(
+              borderSide: BorderSide(
+                color: hintsColor,
+              ),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            hintStyle: TextStyles.paragraphLight,
+            hintText: hintText,
+            labelStyle: TextStyles.paragraphRegular,
           ),
         ),
-        border: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: hintsColor,
-          ),
-          borderRadius: BorderRadius.circular(8),
-        ),
-        hintStyle: TextStyles.paragraphLight,
-        hintText: hintText,
-        labelStyle: TextStyles.paragraphRegular,
-      ),
+      ],
     );
   }
 }

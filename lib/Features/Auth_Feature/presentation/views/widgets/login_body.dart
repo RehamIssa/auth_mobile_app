@@ -34,7 +34,6 @@ class LoginBody extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CustomInputField(
-                  obscureText: false,
                   label: 'Username',
                   hint: 'Enter your username',
                   icon: FontAwesomeIcons.circleXmark,
@@ -43,7 +42,6 @@ class LoginBody extends StatelessWidget {
                   height: 22,
                 ),
                 CustomInputField(
-                  obscureText: false,
                   label: 'Password',
                   hint: 'Enter your password',
                   icon: FontAwesomeIcons.eyeSlash,

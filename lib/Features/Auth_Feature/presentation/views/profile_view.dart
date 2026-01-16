@@ -35,7 +35,6 @@ class ProfileView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CustomInputField(
-                  obscureText: false,
                   label: 'Username',
                   hint: 'ahmed0saber',
                   icon: FontAwesomeIcons.circleXmark,
@@ -44,7 +43,6 @@ class ProfileView extends StatelessWidget {
                   height: 22,
                 ),
                 CustomInputField(
-                  obscureText: false,
                   label: 'Email',
                   hint: 'ahmed0saber33@gmail.com',
                   icon: FontAwesomeIcons.eyeSlash,
@@ -53,7 +51,6 @@ class ProfileView extends StatelessWidget {
                   height: 22,
                 ),
                 CustomInputField(
-                  obscureText: false,
                   label: 'Gender',
                   hint: 'Male',
                   icon: FontAwesomeIcons.eyeSlash,

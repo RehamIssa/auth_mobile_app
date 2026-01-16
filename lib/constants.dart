@@ -10,3 +10,4 @@ const Color warningOnClickColor = Color(0xffEB8E97);
 
 const Color textColor = Color(0xff2A2B2E);
 const Color hintsColor = Color(0xff808194);
+

@@ -6,11 +6,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CustomInputField extends StatelessWidget {
   const CustomInputField(
-      {super.key, required this.label, required this.hint, required this.icon, required this.obscureText});
+      {super.key, required this.label, required this.hint, required this.icon});
   final String label;
   final String hint;
   final IconData icon;
-  final bool obscureText;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -23,15 +22,20 @@ class CustomInputField extends StatelessWidget {
         const SizedBox(
           height: 8,
         ),
-        CustomTextFormField(
-          obscureText: true,
-          hintText: hint,
-          icon: FaIcon(
-            icon,
-            color: hintsColor,
-            size: 16,
-          ),
-        ),
+        // CustomTextFormField(
+        //   obscureText: false,
+        //   hintText: hint,
+        //   icon: IconButton(
+        //     onPressed: () {
+              
+        //     },
+        //     icon: FaIcon(
+        //       FontAwesomeIcons.circleXmark,
+        //       color: hintsColor,
+        //       size: 16,
+        //     ),
+        //   ),
+        // ),
       ],
     );
   }

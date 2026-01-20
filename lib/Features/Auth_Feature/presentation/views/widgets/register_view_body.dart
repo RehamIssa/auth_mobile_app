@@ -51,13 +51,13 @@ class RegisterViewBody extends StatelessWidget {
                   controller: usernameController,
                 ),
                 const Gap(22),
-                BlocProvider(
-                  create: (_) => PasswordVisibilityCubit(),
-                  child: CustomTextFormPasswordField(
-                    hintText: 'Enter your password',
-                    label: 'Password',
-                  ),
-                ),
+                // BlocProvider(
+                //   create: (_) => PasswordVisibilityCubit(),
+                //   child: CustomTextFormPasswordField(
+                //     hintText: 'Enter your password',
+                //     label: 'Password',
+                //   ),
+                // ),
                 const Gap(22),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

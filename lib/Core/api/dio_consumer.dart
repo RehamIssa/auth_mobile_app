@@ -1,5 +1,6 @@
 import 'package:auth_mobile_app/Core/api/api_consumer.dart';
 import 'package:auth_mobile_app/Core/api/api_interceptor.dart';
+import 'package:auth_mobile_app/Core/api/endpoints.dart';
 import 'package:auth_mobile_app/Core/errors/exceptions.dart';
 import 'package:dio/dio.dart';
 
@@ -7,7 +8,7 @@ class DioConsumer extends ApiConsumer {
   DioConsumer({
     required this.dio,
   }) {
-    dio.options.baseUrl = 'https://dummyjson.com/auth/';
+    dio.options.baseUrl = Endpoints.baseUrl;
     dio.interceptors.add(
       ApiInterceptor(), //to monitor the requests and responses and send data with requests
     );

@@ -18,6 +18,8 @@ class RegisterViewBody extends StatelessWidget {
   RegisterViewBody({super.key});
   final emailController = TextEditingController();
   final usernameController = TextEditingController();
+  final passwordController = TextEditingController();
+  final GlobalKey<FormState> signupFormKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -36,68 +38,74 @@ class RegisterViewBody extends StatelessWidget {
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 24.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                CustomTextFormField(
-                  hintText: 'Enter your username',
-                  label: 'Username',
-                  controller: usernameController,
-                ),
-                const Gap(22),
-                CustomTextFormField(
-                  hintText: 'Enter your email',
-                  label: 'Email',
-                  controller: usernameController,
-                ),
-                const Gap(22),
-                // BlocProvider(
-                //   create: (_) => PasswordVisibilityCubit(),
-                //   child: CustomTextFormPasswordField(
-                //     hintText: 'Enter your password',
-                //     label: 'Password',
-                //   ),
-                // ),
-                const Gap(22),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    BlocProvider(
-                      create: (context) => CheckboxToggleCubit(),
-                      child: CustomCheckbox(),
+            child: Form(
+              key: signupFormKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CustomTextFormField(
+                    hintText: 'Enter your username',
+                    label: 'Username',
+                    controller: usernameController,
+                  ),
+                  const Gap(22),
+                  CustomTextFormField(
+                    hintText: 'Enter your email',
+                    label: 'Email',
+                    controller: emailController,
+                  ),
+                  const Gap(22),
+                  BlocProvider(
+                    create: (_) => PasswordVisibilityCubit(),
+                    child: CustomTextFormPasswordField(
+                      controller: passwordController,
+                      hintText: 'Enter your password',
+                      label: 'Password',
                     ),
-                    CustomUnderlinedText(text: 'Have a problem?'),
-                  ],
-                ),
-                const Gap(22),
-                const Gap(22),
-                CustomButton(
-                  label: 'Register',
-                  onPressed: () {
-                    Navigator.pushNamed(context, ProfileView.id);
-                  },
-                ),
-                const Gap(22),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Text(
-                      'Already have an account? ',
-                      style: TextStyle(
-                        color: textColor,
-                        fontSize: 14,
+                  ),
+                  const Gap(22),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      BlocProvider(
+                        create: (context) => CheckboxToggleCubit(),
+                        child: CustomCheckbox(),
                       ),
-                    ),
-                    const Gap(6),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(context, LoginView.id);
-                      },
-                      child: CustomUnderlinedText(text: 'Login'),
-                    ),
-                  ],
-                ),
-              ],
+                      CustomUnderlinedText(text: 'Have a problem?'),
+                    ],
+                  ),
+                  const Gap(22),
+                  const Gap(22),
+                  CustomButton(
+                    label: 'Register',
+                    onPressed: () {
+                      if (signupFormKey.currentState!.validate()) {
+                        Navigator.pushNamed(context, ProfileView.id);
+                      }
+                    },
+                  ),
+                  const Gap(22),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Text(
+                        'Already have an account? ',
+                        style: TextStyle(
+                          color: textColor,
+                          fontSize: 14,
+                        ),
+                      ),
+                      const Gap(6),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, LoginView.id);
+                        },
+                        child: CustomUnderlinedText(text: 'Login'),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ],

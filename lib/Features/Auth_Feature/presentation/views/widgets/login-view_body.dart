@@ -7,6 +7,7 @@ import 'package:auth_mobile_app/Features/Auth_Feature/presentation/views/profile
 import 'package:auth_mobile_app/Features/Auth_Feature/presentation/views/register_view.dart';
 import 'package:auth_mobile_app/Features/Auth_Feature/presentation/views/widgets/custom_button.dart';
 import 'package:auth_mobile_app/Features/Auth_Feature/presentation/views/widgets/custom_checkbox.dart';
+import 'package:auth_mobile_app/Features/Auth_Feature/presentation/views/widgets/custom_loading_button.dart';
 import 'package:auth_mobile_app/Features/Auth_Feature/presentation/views/widgets/custom_text_form_field.dart';
 import 'package:auth_mobile_app/Features/Auth_Feature/presentation/views/widgets/custom_text_form_password_field.dart';
 import 'package:auth_mobile_app/Features/Auth_Feature/presentation/views/widgets/custom_underlined_text.dart';
@@ -79,7 +80,10 @@ class LoginViewBody extends StatelessWidget {
                       ),
                       const Gap(22),
                       state is LoginLoadingState
-                          ? CircularProgressIndicator()
+                          ? LoadingButton(
+                              primary: primaryColor,
+                              pressedButtonColor: primaryPressedColor,
+                            )
                           : CustomButton(
                               label: 'Login',
                               onPressed: () {
@@ -119,3 +123,4 @@ class LoginViewBody extends StatelessWidget {
     );
   }
 }
+

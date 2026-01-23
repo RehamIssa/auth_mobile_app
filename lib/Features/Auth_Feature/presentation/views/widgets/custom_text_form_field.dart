@@ -27,6 +27,12 @@ class CustomTextFormField extends StatelessWidget {
           height: 8,
         ),
         TextFormField(
+          validator: (data) {
+            if (data == null || data.isEmpty) {
+              return 'Field is required';
+            }
+            return null;
+          },
           controller: controller,
           cursorColor: primaryColor,
           decoration: InputDecoration(

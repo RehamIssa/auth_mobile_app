@@ -9,11 +9,12 @@ class CustomTextFormPasswordField extends StatelessWidget {
   const CustomTextFormPasswordField({
     super.key,
     required this.hintText,
-    required this.label, required this.passwordController,
+    required this.label,
+    required this.controller,
   });
   final String hintText;
   final String label;
-  final TextEditingController passwordController; 
+  final TextEditingController controller;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<PasswordVisibilityCubit, bool>(
@@ -29,9 +30,15 @@ class CustomTextFormPasswordField extends StatelessWidget {
               height: 8,
             ),
             TextFormField(
+              validator: (data) {
+                if (data == null || data.isEmpty) {
+                  return 'Field is required';
+                }
+                return null;
+              },
               obscureText: isVisible,
               cursorColor: primaryColor,
-              controller: passwordController,
+              controller: controller,
               decoration: InputDecoration(
                 suffixIconConstraints: BoxConstraints(
                   minWidth: 0,

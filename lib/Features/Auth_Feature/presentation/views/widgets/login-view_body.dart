@@ -18,7 +18,7 @@ import 'package:gap/gap.dart';
 
 class LoginViewBody extends StatelessWidget {
   LoginViewBody({super.key});
-
+  final GlobalKey<FormState> formKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -27,6 +27,7 @@ class LoginViewBody extends StatelessWidget {
           if (state is LoginSuccessState) {
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text('Success')));
+            Navigator.pushNamed(context, ProfileView.id);
           } else if (state is LoginFailedState) {
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text(state.errorMessage)));
@@ -44,66 +45,71 @@ class LoginViewBody extends StatelessWidget {
               const Gap(22),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 24.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    CustomTextFormField(
-                      hintText: 'Enter your username',
-                      label: 'Username',
-                      controller: context.read<LoginCubit>().usernameController,
-                    ),
-                    const Gap(22),
-                    BlocProvider(
-                      create: (_) => PasswordVisibilityCubit(),
-                      child: CustomTextFormPasswordField(
-                        passwordController:
-                            context.read<LoginCubit>().passwordController,
-                        hintText: 'Enter your password',
-                        label: 'Password',
+                child: Form(
+                  key: formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      CustomTextFormField(
+                        hintText: 'Enter your username',
+                        label: 'Username',
+                        controller:
+                            context.read<LoginCubit>().usernameController,
                       ),
-                    ),
-                    const Gap(22),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        BlocProvider(
-                          create: (context) => CheckboxToggleCubit(),
-                          child: CustomCheckbox(),
+                      const Gap(22),
+                      BlocProvider(
+                        create: (_) => PasswordVisibilityCubit(),
+                        child: CustomTextFormPasswordField(
+                          controller:
+                              context.read<LoginCubit>().passwordController,
+                          hintText: 'Enter your password',
+                          label: 'Password',
                         ),
-                        CustomUnderlinedText(text: 'Forgot password?'),
-                      ],
-                    ),
-                    const Gap(22),
-                    state is LoginLoadingState
-                        ? CircularProgressIndicator()
-                        : CustomButton(
-                            label: 'Login',
-                            onPressed: () {
-                              //Navigator.pushNamed(context, ProfileView.id);
-                              context.read<LoginCubit>().signin();
+                      ),
+                      const Gap(22),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          BlocProvider(
+                            create: (context) => CheckboxToggleCubit(),
+                            child: CustomCheckbox(),
+                          ),
+                          CustomUnderlinedText(text: 'Forgot password?'),
+                        ],
+                      ),
+                      const Gap(22),
+                      state is LoginLoadingState
+                          ? CircularProgressIndicator()
+                          : CustomButton(
+                              label: 'Login',
+                              onPressed: () {
+                                if (formKey.currentState!.validate()) {
+                                  context.read<LoginCubit>().signin();
+                                }
+                              },
+                            ),
+                      const Gap(22),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const Text(
+                            'Don’t have an account?',
+                            style: TextStyle(
+                              color: textColor,
+                              fontSize: 14,
+                            ),
+                          ),
+                          const Gap(6),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.pushNamed(context, RegisterView.id);
                             },
+                            child: CustomUnderlinedText(text: 'Register'),
                           ),
-                    const Gap(22),
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const Text(
-                          'Don’t have an account?',
-                          style: TextStyle(
-                            color: textColor,
-                            fontSize: 14,
-                          ),
-                        ),
-                        const Gap(6),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.pushNamed(context, RegisterView.id);
-                          },
-                          child: CustomUnderlinedText(text: 'Register'),
-                        ),
-                      ],
-                    ),
-                  ],
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],

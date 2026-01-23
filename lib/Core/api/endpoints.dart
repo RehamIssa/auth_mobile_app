@@ -1,6 +1,7 @@
 class Endpoints {
   static final String baseUrl = 'https://dummyjson.com/';
   static final String login = 'user/login';
+  static final String signup = 'users/add';
 }
 
 class ApiKeys {
@@ -12,5 +13,4 @@ class ApiKeys {
   static final String gender = 'gender';
   static final String profileImage = 'image';
   static final String accessToken = 'accessToken';
-
 }

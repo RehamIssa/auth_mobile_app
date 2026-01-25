@@ -1,6 +1,7 @@
 import 'package:auth_mobile_app/Core/api/api_consumer.dart';
 import 'package:auth_mobile_app/Core/api/endpoints.dart';
 import 'package:auth_mobile_app/Core/errors/exceptions.dart';
+import 'package:auth_mobile_app/Core/utils/secure_storage.dart';
 import 'package:auth_mobile_app/Features/Auth_Feature/data/models/user_model.dart';
 import 'package:auth_mobile_app/Features/Auth_Feature/presentation/view_model/login_cubit/login_state.dart';
 import 'package:flutter/widgets.dart';
@@ -21,7 +22,9 @@ class LoginCubit extends Cubit<LoginState> {
         ApiKeys.username: usernameController.text,
         ApiKeys.password: passwordController.text,
       });
+
       user = UserModel.fromJson(response);
+      await SecureStorage.writeToken(user!.token);
       emit(LoginSuccessState());
     } on ServerException catch (e) {
       emit(

@@ -3,6 +3,7 @@ import 'package:auth_mobile_app/Features/Auth_Feature/presentation/view_model/ch
 import 'package:auth_mobile_app/Features/Auth_Feature/presentation/view_model/login_cubit/login_cubit.dart';
 import 'package:auth_mobile_app/Features/Auth_Feature/presentation/view_model/login_cubit/login_state.dart';
 import 'package:auth_mobile_app/Features/Auth_Feature/presentation/view_model/password_visibility_cubit/password_visibility_cubit.dart';
+import 'package:auth_mobile_app/Features/Auth_Feature/presentation/view_model/user_cubit/user_cubit.dart';
 import 'package:auth_mobile_app/Features/Auth_Feature/presentation/views/profile_view.dart';
 import 'package:auth_mobile_app/Features/Auth_Feature/presentation/views/register_view.dart';
 import 'package:auth_mobile_app/Features/Auth_Feature/presentation/views/widgets/custom_button.dart';
@@ -27,7 +28,8 @@ class LoginViewBody extends StatelessWidget {
         listener: (context, state) {
           if (state is LoginSuccessState) {
             ScaffoldMessenger.of(context)
-                .showSnackBar(SnackBar(content: Text('Success')));
+                .showSnackBar(SnackBar(content: Text('Login Success')));
+            context.read<UserCubit>().getUserProfileData();
             Navigator.pushNamed(context, ProfileView.id);
           } else if (state is LoginFailedState) {
             ScaffoldMessenger.of(context)
@@ -123,4 +125,3 @@ class LoginViewBody extends StatelessWidget {
     );
   }
 }
-

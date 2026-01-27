@@ -1,6 +1,4 @@
 import 'package:auth_mobile_app/Core/utils/text_styles.dart';
-import 'package:auth_mobile_app/Features/Auth_Feature/presentation/view_model/checkbox_toggle_cubit/checkbox_toggle_cubit.dart';
-import 'package:auth_mobile_app/Features/Auth_Feature/presentation/view_model/password_visibility_cubit/password_visibility_cubit.dart';
 import 'package:auth_mobile_app/Features/Auth_Feature/presentation/view_model/signup_cubit/signup_cubit.dart';
 import 'package:auth_mobile_app/Features/Auth_Feature/presentation/view_model/signup_cubit/signup_state.dart';
 import 'package:auth_mobile_app/Features/Auth_Feature/presentation/views/login_view.dart';
@@ -68,23 +66,17 @@ class RegisterViewBody extends StatelessWidget {
                         controller: context.read<SignupCubit>().emailController,
                       ),
                       const Gap(22),
-                      BlocProvider(
-                        create: (_) => PasswordVisibilityCubit(),
-                        child: CustomTextFormPasswordField(
-                          controller:
-                              context.read<SignupCubit>().passwordController,
-                          hintText: 'Enter your password',
-                          label: 'Password',
-                        ),
+                      CustomTextFormPasswordField(
+                        controller:
+                            context.read<SignupCubit>().passwordController,
+                        hintText: 'Enter your password',
+                        label: 'Password',
                       ),
                       const Gap(22),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          BlocProvider(
-                            create: (context) => CheckboxToggleCubit(),
-                            child: CustomCheckbox(),
-                          ),
+                          CustomCheckbox(),
                           CustomUnderlinedText(text: 'Have a problem?'),
                         ],
                       ),

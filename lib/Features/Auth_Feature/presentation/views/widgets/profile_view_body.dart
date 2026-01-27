@@ -1,4 +1,5 @@
 import 'package:auth_mobile_app/Core/utils/secure_storage.dart';
+import 'package:auth_mobile_app/Features/Auth_Feature/presentation/view_model/checkbox_toggle_cubit/checkbox_toggle_cubit.dart';
 import 'package:auth_mobile_app/Features/Auth_Feature/presentation/view_model/user_cubit/user_cubit.dart';
 import 'package:auth_mobile_app/Features/Auth_Feature/presentation/view_model/user_cubit/user_state.dart';
 import 'package:auth_mobile_app/Features/Auth_Feature/presentation/views/widgets/custom_button.dart';
@@ -64,6 +65,7 @@ class ProfileViewBody extends StatelessWidget {
                             CustomButton(
                               onPressed: () async {
                                 await SecureStorage.deleteToken();
+
                                 if (!context.mounted) return;
                                 Navigator.pop(context);
                               },

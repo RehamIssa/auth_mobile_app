@@ -1,8 +1,6 @@
 import 'package:auth_mobile_app/Core/utils/text_styles.dart';
-import 'package:auth_mobile_app/Features/Auth_Feature/presentation/view_model/checkbox_toggle_cubit/checkbox_toggle_cubit.dart';
 import 'package:auth_mobile_app/Features/Auth_Feature/presentation/view_model/login_cubit/login_cubit.dart';
 import 'package:auth_mobile_app/Features/Auth_Feature/presentation/view_model/login_cubit/login_state.dart';
-import 'package:auth_mobile_app/Features/Auth_Feature/presentation/view_model/password_visibility_cubit/password_visibility_cubit.dart';
 import 'package:auth_mobile_app/Features/Auth_Feature/presentation/view_model/user_cubit/user_cubit.dart';
 import 'package:auth_mobile_app/Features/Auth_Feature/presentation/views/profile_view.dart';
 import 'package:auth_mobile_app/Features/Auth_Feature/presentation/views/register_view.dart';
@@ -21,6 +19,7 @@ import 'package:gap/gap.dart';
 class LoginViewBody extends StatelessWidget {
   LoginViewBody({super.key});
   final GlobalKey<FormState> formKey = GlobalKey();
+   
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -60,23 +59,17 @@ class LoginViewBody extends StatelessWidget {
                             context.read<LoginCubit>().usernameController,
                       ),
                       const Gap(22),
-                      BlocProvider(
-                        create: (_) => PasswordVisibilityCubit(),
-                        child: CustomTextFormPasswordField(
-                          controller:
-                              context.read<LoginCubit>().passwordController,
-                          hintText: 'Enter your password',
-                          label: 'Password',
-                        ),
+                      CustomTextFormPasswordField(
+                        controller:
+                            context.read<LoginCubit>().passwordController,
+                        hintText: 'Enter your password',
+                        label: 'Password',
                       ),
                       const Gap(22),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          BlocProvider(
-                            create: (context) => CheckboxToggleCubit(),
-                            child: CustomCheckbox(),
-                          ),
+                          CustomCheckbox(),
                           CustomUnderlinedText(text: 'Forgot password?'),
                         ],
                       ),
